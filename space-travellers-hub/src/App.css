@@ -1,0 +1,38 @@
+.container {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-items {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.main-header {
+  font-size: 32px;
+}
+
+.list-item {
+  margin: 0px 20px 0px 20px;
+}
+
+.divider {
+  border: 2px solid black;
+  height: 18px
+}
+
+.links {
+  text-decoration: none;
+}
+
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
