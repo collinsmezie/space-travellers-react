@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { fetchRocketData } from '../redux/Rockets/rockets';
+import { fetchRocketData, fetchRocketId } from '../redux/Rockets/rockets';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Rockets = () => {
@@ -20,9 +20,10 @@ const Rockets = () => {
           key={rocket.id}
           className="container"
         >
-        <img src="https://imgur.com/azYafd8.jpg" alt='rocket'></img>    
+        <img src={rocket.flickr_images[0]} alt='rocket'></img>    
         <h2>{rocket.rocket_name}</h2>
         <p>{rocket.description}</p>
+        <button type='button' onClick={dispatch(fetchRocketId(rocket.id))}>Reserve Rocket</button>
          
         </div>
   
