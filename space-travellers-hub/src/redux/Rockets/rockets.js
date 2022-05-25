@@ -52,7 +52,7 @@ export const fetchRocketData = () => (dispatch) => {
                 rocketData.push({
                     id: item.id,
                     name: item.rocket_name, 
-                    type: item.engine.type,
+                    description: item.description,
                     flickr_images: item.flickr_images
                 });
           
@@ -84,15 +84,15 @@ export const fetchRocketId = (id) => (dispatch) => {
     fetch(URL)
     .then((response) => response.json())
     .then((data) => {
-        let rocketId = "";
-        data.forEach((key) => {
-            if (key.rocket_id === id){
-                rocketId = key.rocket_id
-                console.log(rocketId)
-          }
-        });
+        // let rocketId = "";
+        // data.forEach((key) => {
+        //     if (key.rocket_id === id){
+        //         rocketId = key.rocket_id
+        //         console.log(rocketId)
+        //   }
+        // });
         
-        dispatch(getRocketId(rocketId));
+        // dispatch(getRocketId(rocketId));
       })
       .catch((error) => {
         dispatch(errorAction(error.message));
@@ -125,13 +125,13 @@ const rocketsReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 rockets: action.payload
-            }
-        case BUTTON_PRESSED: 
-        const newState = state.map(rocket => {
-            if(rocket.id !== id) 
-                return rocket;
-            return { ...rocket, reserved: true };
-        });
+            };
+        // case BUTTON_PRESSED: 
+        // const newState = state.map(rocket => {
+        //     if(rocket.id !== id) 
+        //         return rocket;
+        //     return { ...rocket, reserved: true };
+        // });
 
         default:
             return state
