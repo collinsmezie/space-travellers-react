@@ -2,6 +2,7 @@ const LOADED = 'LOADED';
 const LOADING = 'LOADING';
 const ERROR = 'ERROR';
 const JOIN_MISSION = 'JOIN_MISSION';
+const LEAVE_MISSION = 'LEAVE_MISSION';
 const URL = 'https://api.spacexdata.com/v3/missions'
 
 
@@ -22,6 +23,12 @@ const joinMissionAction = (id) => ({
     type: JOIN_MISSION,
     payload: id
 })
+
+const leaveMissionAction = (id) => ({
+    type: LEAVE_MISSION,
+    payload: id
+})
+
 
 const initialState = {
   missions: [],
@@ -54,6 +61,10 @@ export const fetchMissionData = () => (dispatch) => {
 
   export const joinMission = (id) => {
       return joinMissionAction(id);
+  }
+
+  export const leaveMission = (id) => {
+    return leaveMissionAction(id);
   }
 
 
@@ -95,6 +106,24 @@ const missionReducer = (state = initialState, action) => {
                 ...state, 
                 missions: newState
             };
+        
+        case LEAVE_MISSION:
+            const missionState = state.missions.map(mission => {
+               
+                if (mission.mission_id === action.payload) {
+                    return {
+                        ...mission,
+                        mission_status: false
+                    };
+                };
+                return mission;
+            });
+
+            return {
+                ...state, 
+                missions: missionState
+            };
+
 
         default:
             return state
