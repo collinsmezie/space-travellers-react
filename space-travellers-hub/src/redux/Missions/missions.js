@@ -1,6 +1,7 @@
 const LOADED = 'LOADED';
 const LOADING = 'LOADING';
 const ERROR = 'ERROR';
+const JOIN_MISSION = 'JOIN_MISSION';
 const URL = 'https://api.spacexdata.com/v3/missions'
 
 
@@ -17,6 +18,11 @@ const loadMissionAction = (data) => ({
     payload: data
 })
 
+const joinMissionAction = (id) => ({
+    type: JOIN_MISSION,
+    payload: id
+})
+
 const initialState = {
   missions: [],
   loading: false,
@@ -29,14 +35,14 @@ export const fetchMissionData = () => (dispatch) => {
     fetch(URL)
     .then((response) => response.json())
     .then((data) => {
-        // console.log(data)
+        
         const missionData = [];
         data.forEach((mission) => {  
             missionData.push({
                 mission_id: mission.mission_id,
                 mission_name:mission.mission_name,
                 description: mission.description,
-                mission_status: 'Not A Member'
+                mission_status: false
             });
         });
         dispatch(loadMissionAction(missionData));
@@ -45,6 +51,10 @@ export const fetchMissionData = () => (dispatch) => {
         dispatch(errorAction(error.message));
       });
   };
+
+  export const joinMission = (id) => {
+      return joinMissionAction(id);
+  }
 
 
 const missionReducer = (state = initialState, action) => {
@@ -68,6 +78,23 @@ const missionReducer = (state = initialState, action) => {
                 loading: false,
                 missions: action.payload
             }
+        
+        case JOIN_MISSION:
+           const newState = state.missions.map(mission => {
+               
+                if (mission.mission_id === action.payload) {
+                    return {
+                        ...mission,
+                        mission_status: true
+                    };
+                };
+                return mission;
+            });
+
+            return {
+                ...state, 
+                missions: newState
+            };
 
         default:
             return state
