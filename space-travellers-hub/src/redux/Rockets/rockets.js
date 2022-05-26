@@ -1,10 +1,9 @@
 
-
 const LOADED = 'LOADED';
 const LOADING = 'LOADING';
 const ERROR = 'ERROR';
-
-const BUTTON_PRESSED = 'BUTTON_PRESSED';
+const RESERVATION = 'RESERVATION';
+const CANCEL_RESERVATION = 'CANCEL_RESERVATION'
 const URL = 'https://api.spacexdata.com/v3/rockets'
 
 
@@ -21,13 +20,13 @@ const loadCompletedAction = (data) => ({
     payload: data
 })
 
-// const buttonAction = (data) => ({
-//     type: BUTTON_PRESSED,
-//     payload: data
-// })
+export const cancel_reservation = (id) => ({
+    type: CANCEL_RESERVATION,
+    payload: id
+})
 
-const getRocketId = (id) => ({
-    type: BUTTON_PRESSED,
+export const reserveRocket = (id) => ({
+    type: RESERVATION,
     payload: id
 })
 
@@ -35,79 +34,41 @@ const getRocketId = (id) => ({
 
 
 const initialState = {
-  rockets: [],
-  loading: false,
-  error: null
+    rockets: [],
+    loading: false,
+    error: null
 
 };
 
 export const fetchRocketData = () => (dispatch) => {
     dispatch(loadingAction());
     fetch(URL)
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data)
-        const rocketData = [];
-        data.forEach((item) => {
+        .then((response) => response.json())
+        .then((data) => {
+
+            const rocketData = [];
+            data.forEach((item) => {
                 rocketData.push({
                     id: item.id,
-                    name: item.rocket_name, 
+                    name: item.rocket_name,
                     description: item.description,
-                    flickr_images: item.flickr_images
+                    images: item.flickr_images,
+                    rocketid: item.rocket_id,
                 });
-          
+
+            });
+
+            dispatch(loadCompletedAction(rocketData));
+        })
+        .catch((error) => {
+            dispatch(errorAction(error.message));
         });
-
-        // const array = [] 
-        // rocketData.forEach(item => {
-        //     array.push({
-        //         id: item.id,
-        //         name: item.rocket_name, 
-        //         type: item.engine.type,
-        //         flickr_images: item.flickr_images
-        //     })
-            
-    // })
-
-        // console.log("line 51",array) 
-        
-        dispatch(loadCompletedAction(rocketData));
-      })
-      .catch((error) => {
-        dispatch(errorAction(error.message));
-      });
-  };
-
-
-export const fetchRocketId = (id) => (dispatch) => {
-    dispatch(loadingAction());
-    fetch(URL)
-    .then((response) => response.json())
-    .then((data) => {
-        // let rocketId = "";
-        // data.forEach((key) => {
-        //     if (key.rocket_id === id){
-        //         rocketId = key.rocket_id
-        //         console.log(rocketId)
-        //   }
-        // });
-        
-        // dispatch(getRocketId(rocketId));
-      })
-      .catch((error) => {
-        dispatch(errorAction(error.message));
-      });
-  };
-
-
-
-
-
+};
 
 
 const rocketsReducer = (state = initialState, action) => {
 
-    switch(action.type){
+    switch (action.type) {
         case LOADING:
             return {
                 ...state,
@@ -119,19 +80,35 @@ const rocketsReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             }
-        
+
         case LOADED:
             return {
                 ...state,
                 loading: false,
                 rockets: action.payload
             };
-        // case BUTTON_PRESSED: 
-        // const newState = state.map(rocket => {
-        //     if(rocket.id !== id) 
-        //         return rocket;
-        //     return { ...rocket, reserved: true };
-        // });
+        case RESERVATION:
+            const reserve = state.rockets.map(rocket => {
+                if (action.payload === rocket.rocketid) {
+                    console.log("payload", rocket.rocketid, action.payload)
+                
+
+                    return { ...rocket, reserved: true };
+                }
+
+                return rocket
+
+            });
+        
+            case CANCEL_RESERVATION:
+                const cancel = state.rockets.map(rocket => {
+                    if (action.payload === rocket.rocketid) {
+                        return { ...rocket, reserved: false };
+                    }
+    
+                    return rocket
+    
+                });
 
         default:
             return state
