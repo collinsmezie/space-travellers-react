@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { reserveRocket } from '../redux/Rockets/rockets';
 
 const Rockets = () => {
-    const { rockets, loading } = useSelector((state) => state.rocketsReducer);
+    const { rockets, loading } = useSelector((state) => state.rocketsReducer);    
     const dispatch = useDispatch();
   
     useEffect(() => {
