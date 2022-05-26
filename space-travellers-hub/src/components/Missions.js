@@ -2,7 +2,8 @@ import React, {useEffect} from 'react';
 import Table from 'react-bootstrap/Table';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
-import { fetchMissionData, joinMission } from '../redux/Missions/missions';
+import Spinner from 'react-bootstrap/Spinner';
+import { fetchMissionData, joinMission, leaveMission } from '../redux/Missions/missions';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Missions = () => {
@@ -13,11 +14,15 @@ const Missions = () => {
         dispatch(fetchMissionData());
     }, [dispatch]);
 
-    return (<Table striped bordered hover size="sm">
+    return (
+    <>
+    {loading && <Spinner animation="border" />}
+        
+    <Table striped bordered hover size="sm">
         <thead>
         <tr>
             <th>Mission</th>
-            <th>Description</th>
+            <th className="table-width">Description</th>
             <th>Status</th>
             <th></th>
         </tr>
@@ -39,12 +44,19 @@ const Missions = () => {
                         
                     </td>
                     <td>
-                        <Button variant="outline-dark" onClick={() => dispatch(joinMission(mission.mission_id))}>Join Mission</Button>
+                        {
+                            !mission.mission_status ? 
+                            <Button variant="outline-dark" onClick={() => dispatch(joinMission(mission.mission_id))}>Join Mission</Button>
+                            :
+                            <Button variant="outline-danger" onClick={() => dispatch(leaveMission(mission.mission_id))}>Leave Mission</Button>
+                        }
+                        
                     </td>
                 </tr>)
             }
         </tbody>
-        </Table>)
+        </Table>
+        </>);
 }
 
 export default Missions
