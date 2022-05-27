@@ -5,7 +5,8 @@
 
 .nav-bar {
   display: flex;
-  justify-content: space-between;
+
+  /* justify-content: space-between; */
   align-items: center;
 }
 
@@ -17,15 +18,16 @@
 
 .main-header {
   font-size: 32px;
+  margin-right: 40%;
 }
 
 .list-item {
-  margin: 0px 20px 0px 20px;
+  margin: 0 20px 0 20px;
 }
 
 .divider {
   border: 2px solid black;
-  height: 18px
+  height: 18px;
 }
 
 .links {
@@ -45,7 +47,6 @@ nav a.active {
 .description-container {
   width: 70%;
   margin-bottom: 30px;
-
 }
 
 #btn {
@@ -66,14 +67,19 @@ nav a.active {
 }
 
 .bg-badgeActiveColor {
-  background-color: #18A2B8;
-    border-color: #45A293;
-    border: 3px solid-transparent;
-    color: #45A293;
-    border-radius: 100px;
+  background-color: #18a2b8;
+  border-color: #45a293;
+  border: 3px solid;
+  color: #45a293;
+  border-radius: 100px;
 }
 
 .center-text {
   text-align: center;
-  vertical-align:middle;
+  vertical-align: middle;
+}
+
+.logo {
+  width: 60px;
+  margin-right: 2%;
 }
