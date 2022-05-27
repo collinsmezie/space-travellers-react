@@ -14,7 +14,9 @@ const Rockets = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchRocketData());
+    if(rockets.length === 0){
+      dispatch(fetchRocketData());
+    }
   }, [dispatch]);
 
   let fetchedRockets = '';
@@ -23,7 +25,7 @@ const Rockets = () => {
   } else {
     fetchedRockets = rockets.map((rocket) => (
 
-      <div key={rocket.id}>
+      <div>
         <Stack direction="horizontal" gap={5}>
 
           <div className='img-container'>

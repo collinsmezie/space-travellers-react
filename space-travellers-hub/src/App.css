@@ -51,3 +51,29 @@ nav a.active {
 #btn {
   color: gray;
 }
+
+.table-width {
+  width: 60%;
+}
+
+.flexy {
+  display: flex;
+}
+
+.filter-width {
+  width: 400px;
+  margin-right: 50px;
+}
+
+.bg-badgeActiveColor {
+  background-color: #18A2B8;
+    border-color: #45A293;
+    border: 3px solid-transparent;
+    color: #45A293;
+    border-radius: 100px;
+}
+
+.center-text {
+  text-align: center;
+  vertical-align:middle;
+}
