@@ -20,7 +20,7 @@ const loadCompletedAction = (data) => ({
     payload: data
 })
 
-export const cancel_reservation = (id) => ({
+export const cancelReservation = (id) => ({
     type: CANCEL_RESERVATION,
     payload: id
 })
@@ -29,9 +29,6 @@ export const reserveRocket = (id) => ({
     type: RESERVATION,
     payload: id
 })
-
-
-
 
 const initialState = {
     rockets: [],
@@ -54,6 +51,7 @@ export const fetchRocketData = () => (dispatch) => {
                     description: item.description,
                     images: item.flickr_images,
                     rocketid: item.rocket_id,
+                    reserved: false,
                 });
 
             });
@@ -90,15 +88,12 @@ const rocketsReducer = (state = initialState, action) => {
         case RESERVATION:
             const reserve = state.rockets.map(rocket => {
                 if (action.payload === rocket.rocketid) {
-                    console.log("payload", rocket.rocketid, action.payload)
-                
-
                     return { ...rocket, reserved: true };
                 }
-
                 return rocket
-
             });
+
+            return {...state, rockets: reserve}
         
             case CANCEL_RESERVATION:
                 const cancel = state.rockets.map(rocket => {
@@ -107,8 +102,8 @@ const rocketsReducer = (state = initialState, action) => {
                     }
     
                     return rocket
-    
                 });
+                return {...state, rockets: cancel}
 
         default:
             return state
