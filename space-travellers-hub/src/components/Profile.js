@@ -41,11 +41,11 @@ const Profile = () => {
             <h3>My Rockets</h3>
             <ListGroup>
                 {
-                    filteredRockets.length === 0 && (<p>Nobody has joined any mission!</p>)
+                    filteredRockets.length === 0 && (<p>No Rocket reservations yet!</p>)
                 }
                 {
                     filteredRockets.map(filteredRocket => {
-                        return <ListGroup.Item key={filteredRocket.mission_id}>{filteredRocket.mission_name}</ListGroup.Item>
+                        return <ListGroup.Item key={filteredRocket.id}>{filteredRocket.name}</ListGroup.Item>
                     })
                 }
             </ListGroup>

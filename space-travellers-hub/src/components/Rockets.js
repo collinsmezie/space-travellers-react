@@ -25,7 +25,7 @@ const Rockets = () => {
   } else {
     fetchedRockets = rockets.map((rocket) => (
 
-      <div>
+      <div key={rocket.id}>
         <Stack direction="horizontal" gap={5}>
 
           <div className='img-container'>
