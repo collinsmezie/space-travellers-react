@@ -14,10 +14,10 @@ function App() {
       <Navbar />
       <hr />
       <Routes>
-        <Route path="/missions"  element={<Missions />}/>
-        <Route path="/rockets" element={<Rockets />}/>
-        <Route path="/profile" element={<Profile />}/>
-        <Route path="/" element={<Rockets />}/>
+        <Route path="/missions" element={<Missions />} />
+        <Route path="/rockets" element={<Rockets />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={<Rockets />} />
       </Routes>
     </div>
   );
