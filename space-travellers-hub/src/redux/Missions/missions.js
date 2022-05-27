@@ -1,8 +1,8 @@
-const LOADED = 'LOADED';
-const LOADING = 'LOADING';
-const ERROR = 'ERROR';
-const JOIN_MISSION = 'JOIN_MISSION';
-const LEAVE_MISSION = 'LEAVE_MISSION';
+const LOADED = 'missions/loaded';
+const LOADING = 'missions/loading';
+const ERROR = 'missions/error';
+const JOIN_MISSION = 'missions/join_mission';
+const LEAVE_MISSION = 'missions/leave_mission';
 const URL = 'https://api.spacexdata.com/v3/missions'
 
 
@@ -39,6 +39,7 @@ const initialState = {
 
 export const fetchMissionData = () => (dispatch) => {
     dispatch(loadingAction());
+
     fetch(URL)
     .then((response) => response.json())
     .then((data) => {
@@ -47,7 +48,7 @@ export const fetchMissionData = () => (dispatch) => {
         data.forEach((mission) => {  
             missionData.push({
                 mission_id: mission.mission_id,
-                mission_name:mission.mission_name,
+                mission_name: mission.mission_name,
                 description: mission.description,
                 mission_status: false
             });
