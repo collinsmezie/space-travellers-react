@@ -3,11 +3,14 @@ import { fetchRocketData } from '../redux/Rockets/rockets';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Rockets = () => {
-    const { rockets, loading } = useSelector((state) => state.rocketsReducer);    
+    const { rockets, loading } = useSelector((state) => {
+      return state.rocketsReducer;
+    });    
     const dispatch = useDispatch();
   
     useEffect(() => {
-      dispatch(fetchRocketData());
+      if (rockets.length === 0)
+        dispatch(fetchRocketData());
     }, [dispatch]);
   
     let fetchedRockets = '';
