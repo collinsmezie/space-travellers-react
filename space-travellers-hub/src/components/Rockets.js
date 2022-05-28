@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Button from 'react-bootstrap/esm/Button';
+import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 import Image from 'react-bootstrap/Image';
-import Badge from 'react-bootstrap/esm/Badge';
+import Badge from 'react-bootstrap/Badge';
 import { fetchRocketData, reserveRocket, cancelReservation } from '../redux/Rockets/rockets';
 
 const Rockets = () => {
