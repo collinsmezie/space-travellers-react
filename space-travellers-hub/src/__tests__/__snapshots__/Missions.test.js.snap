@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests: Missions render test 1`] = `
+<table
+  className="table table-sm table-striped table-bordered table-hover"
+>
+  <thead>
+    <tr>
+      <th>
+        Mission
+      </th>
+      <th
+        className="table-width"
+      >
+        Description
+      </th>
+      <th>
+        Status
+      </th>
+      <th />
+    </tr>
+  </thead>
+  <tbody />
+</table>
+`;

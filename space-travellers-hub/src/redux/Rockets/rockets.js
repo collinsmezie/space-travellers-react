@@ -13,7 +13,7 @@ const errorAction = (error) => ({
   type: ERROR,
   payload: error,
 });
-const loadCompletedAction = (data) => ({
+export const loadCompletedAction = (data) => ({
   type: LOADED,
   payload: data,
 });

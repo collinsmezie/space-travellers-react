@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test: Profile Component should render 1`] = `
+Array [
+  <div
+    className="flexy"
+  >
+    <p>
+      There are no Missions to display!
+    </p>
+    <div>
+      <h3>
+        My Missions
+      </h3>
+      <div
+        className="list-group"
+        onKeyDown={[Function]}
+      >
+        <p>
+          Nobody has joined any mission!
+        </p>
+      </div>
+    </div>
+    <p>
+      There are no Rockets to display!
+    </p>
+    <div>
+      <h3>
+        My Rockets
+      </h3>
+      <div
+        className="list-group"
+        onKeyDown={[Function]}
+      >
+        <p>
+          No Rocket reservations yet!
+        </p>
+      </div>
+    </div>
+  </div>,
+  ",",
+]
+`;
