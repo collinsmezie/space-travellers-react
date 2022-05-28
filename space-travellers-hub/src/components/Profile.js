@@ -24,7 +24,7 @@ const Profile = () => {
         <h3>My Missions</h3>
         <ListGroup>
           {
-                        filteredMissions.length === 0 && (<p>Nobody has joined any mission!</p>)
+                        filteredMissions.length === 0 && (<p>No Missions!</p>)
                     }
           {
                         filteredMissions.map((filteredMission) => <ListGroup.Item key={filteredMission.mission_id} className="filter-width">{filteredMission.mission_name}</ListGroup.Item>)
