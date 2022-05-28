@@ -37,7 +37,7 @@ const Profile = () => {
         <h3>My Rockets</h3>
         <ListGroup>
           {
-                    filteredRockets.length === 0 && (<p>No Rocket reservations yet!</p>)
+                    filteredRockets.length === 0 && (<p>No Reservations yet!</p>)
                 }
           {
                     filteredRockets.map(
