@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import Missions from '../components/Missions';
