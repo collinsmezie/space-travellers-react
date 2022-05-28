@@ -61,6 +61,8 @@ export const joinMission = (id) => joinMissionAction(id);
 
 export const leaveMission = (id) => leaveMissionAction(id);
 
+export const loadMission = (data) => loadMissionAction(data);
+
 const missionReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOADING:
