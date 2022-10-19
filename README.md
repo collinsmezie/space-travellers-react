@@ -12,7 +12,7 @@
 
 ## DEMO
 
-[LIVE DEMO LINK](https://collinsmezie.github.io/Meals-API-WebApp/)
+[LIVE DEMO LINK](https://space-travellers-react.vercel.app/)
 
 ## Getting Started
 
